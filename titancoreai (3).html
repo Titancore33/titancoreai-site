@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TitancoreAI — AI Automation for Business & Healthcare</title>
+<meta name="description" content="TitancoreAI builds custom AI automation systems that help local businesses and healthcare practices capture more leads, respond faster, and operate more efficiently.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:          #0c0c0d;
+  --bg-2:        #111113;
+  --bg-3:        #161618;
+  --bg-4:        #1c1c1f;
+  --line:        rgba(255,255,255,0.07);
+  --line-2:      rgba(255,255,255,0.11);
+  --text-1:      #f4f4f5;
+  --text-2:      #a1a1aa;
+  --text-3:      #52525b;
+  --accent:      #e4e4e7;
+  --blue:        #60a5fa;
+  --blue-dim:    rgba(96,165,250,0.12);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text-1);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 60px;
+  background: rgba(12,12,13,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.3s;
+}
+#nav.solid { border-bottom-color: var(--line-2); }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 9px;
+  text-decoration: none; color: var(--text-1);
+  font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em;
+}
+.logo-sq {
+  width: 26px; height: 26px; border-radius: 6px;
+  background: var(--text-1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-sq svg { display: block; }
+
+.nav-center { display: flex; align-items: center; gap: 0; list-style: none; }
+.nav-center a {
+  display: block; padding: 0 14px;
+  font-size: 0.84rem; font-weight: 400; color: var(--text-2);
+  text-decoration: none; transition: color 0.15s; letter-spacing: 0.005em;
+}
+.nav-center a:hover { color: var(--text-1); }
+
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-link {
+  font-size: 0.84rem; font-weight: 400; color: var(--text-2);
+  text-decoration: none; transition: color 0.15s;
+}
+.nav-link:hover { color: var(--text-1); }
+.nav-btn {
+  display: inline-flex; align-items: center;
+  padding: 7px 16px;
+  background: var(--text-1); color: var(--bg);
+  font-family: var(--sans); font-size: 0.84rem; font-weight: 600;
+  border: none; border-radius: var(--r-sm);
+  text-decoration: none; cursor: pointer;
+  transition: opacity 0.15s;
+  letter-spacing: -0.005em;
+}
+.nav-btn:hover { opacity: 0.88; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 20px; height: 1.5px; background: var(--text-2); }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 120px 40px 80px;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 2rem;
+}
+.hero-kicker::before, .hero-kicker::after { content: ''; flex: 1; height: 1px; width: 32px; background: var(--line-2); }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text-1);
+  max-width: 800px;
+  margin: 0 auto 1.75rem;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-2);
+}
+
+.hero-sub {
+  font-size: 1.05rem; font-weight: 300;
+  color: var(--text-2); line-height: 1.7;
+  max-width: 480px; margin: 0 auto 2.5rem;
+}
+
+.hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-solid {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 22px;
+  background: var(--text-1); color: var(--bg);
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 600;
+  border: none; border-radius: var(--r-sm); text-decoration: none; cursor: pointer;
+  transition: opacity 0.15s; letter-spacing: -0.005em;
+}
+.btn-solid:hover { opacity: 0.88; }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 22px;
+  background: transparent; color: var(--text-2);
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 500;
+  border: 1px solid var(--line-2); border-radius: var(--r-sm); text-decoration: none;
+  transition: all 0.15s; letter-spacing: -0.005em;
+}
+.btn-outline:hover { color: var(--text-1); border-color: rgba(255,255,255,0.2); }
+
+.hero-footnote {
+  margin-top: 4rem;
+  font-size: 0.78rem; color: var(--text-3); letter-spacing: 0.02em;
+}
+
+/* ─── SECTION BASE ─── */
+.section { padding: 96px 40px; }
+.section-alt { background: var(--bg-2); }
+.section-border { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+.eyebrow {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-3); margin-bottom: 1.25rem;
+}
+.h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300; letter-spacing: -0.03em; line-height: 1.1;
+  color: var(--text-1); margin-bottom: 1rem;
+}
+.h2 em { font-style: italic; color: var(--text-2); }
+.lead {
+  font-size: 0.95rem; font-weight: 300; color: var(--text-2); line-height: 1.75;
+  max-width: 440px;
+}
+.sh { margin-bottom: 64px; }
+.sh.c { text-align: center; }
+.sh.c .lead { margin: 0 auto; }
+
+/* ─── SERVICES ─── */
+.services-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.svc {
+  padding: 36px 32px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s;
+  position: relative;
+}
+.svc:hover { background: var(--bg-3); }
+.svc-n {
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em;
+  color: var(--text-3); margin-bottom: 1.5rem; font-family: var(--sans);
+}
+.svc h3 {
+  font-size: 0.97rem; font-weight: 600; color: var(--text-1);
+  letter-spacing: -0.01em; margin-bottom: 0.6rem; line-height: 1.3;
+}
+.svc p { font-size: 0.84rem; color: var(--text-2); font-weight: 300; line-height: 1.7; }
+
+/* ─── HOW IT WORKS ─── */
+.how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
+.how-step { padding: 48px 36px; background: var(--bg-2); }
+.how-n {
+  font-family: var(--serif); font-size: 3rem; font-weight: 300;
+  color: var(--bg-4); line-height: 1; margin-bottom: 1.5rem;
+  letter-spacing: -0.05em;
+}
+.how-step h3 {
+  font-size: 1.05rem; font-weight: 600; letter-spacing: -0.015em;
+  color: var(--text-1); margin-bottom: 0.75rem;
+}
+.how-step p { font-size: 0.85rem; color: var(--text-2); font-weight: 300; line-height: 1.7; }
+
+/* ─── BENEFITS ─── */
+.ben-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.ben-list { display: flex; flex-direction: column; }
+.ben-item {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 24px 0; border-bottom: 1px solid var(--line);
+}
+.ben-item:first-child { border-top: 1px solid var(--line); }
+.ben-num {
+  font-family: var(--serif); font-size: 0.95rem; font-weight: 300;
+  color: var(--text-3); min-width: 24px; padding-top: 1px;
+}
+.ben-item h4 { font-size: 0.92rem; font-weight: 600; color: var(--text-1); margin-bottom: 0.25rem; letter-spacing: -0.01em; }
+.ben-item p { font-size: 0.83rem; color: var(--text-2); font-weight: 300; line-height: 1.65; }
+
+.ben-aside {
+  position: sticky; top: 100px;
+}
+.aside-card {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.aside-top {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.aside-top p { font-size: 0.78rem; color: var(--text-3); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+.aside-top .big {
+  font-family: var(--serif); font-size: 2.8rem; font-weight: 300;
+  color: var(--text-1); letter-spacing: -0.04em; line-height: 1;
+}
+.aside-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 28px; border-bottom: 1px solid var(--line);
+}
+.aside-row:last-child { border-bottom: none; }
+.aside-row span { font-size: 0.82rem; color: var(--text-2); font-weight: 300; }
+.aside-row strong { font-size: 0.82rem; font-weight: 600; color: var(--text-1); }
+
+/* ─── ABOUT ─── */
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text .lead { max-width: 100%; margin-bottom: 1.25rem; }
+.about-pillars { margin-top: 2.5rem; display: flex; flex-direction: column; }
+.pillar {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 0; border-bottom: 1px solid var(--line);
+}
+.pillar:first-child { border-top: 1px solid var(--line); }
+.pillar-mark { width: 4px; height: 4px; border-radius: 50%; background: var(--text-3); margin-top: 8px; flex-shrink: 0; }
+.pillar h4 { font-size: 0.88rem; font-weight: 600; color: var(--text-1); margin-bottom: 0.2rem; letter-spacing: -0.01em; }
+.pillar p { font-size: 0.82rem; color: var(--text-2); font-weight: 300; line-height: 1.6; }
+
+.about-right {
+  background: var(--bg-3); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: 40px;
+}
+.about-right blockquote {
+  font-family: var(--serif); font-size: 1.45rem; font-weight: 300;
+  font-style: italic; color: var(--text-1); line-height: 1.5;
+  letter-spacing: -0.02em; margin-bottom: 2rem;
+}
+.about-right blockquote em { color: var(--text-2); }
+.about-divider { height: 1px; background: var(--line); margin-bottom: 2rem; }
+.about-attrs { display: flex; flex-direction: column; gap: 14px; }
+.attr { display: flex; justify-content: space-between; align-items: center; }
+.attr-k { font-size: 0.8rem; color: var(--text-3); font-weight: 400; }
+.attr-v { font-size: 0.8rem; color: var(--text-1); font-weight: 500; }
+
+/* ─── CONTACT ─── */
+.contact-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+.contact-left .lead { max-width: 100%; margin-bottom: 2.5rem; }
+.contact-details { display: flex; flex-direction: column; gap: 16px; }
+.cd { display: flex; flex-direction: column; gap: 3px; }
+.cd-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+.cd-val { font-size: 0.9rem; color: var(--text-1); font-weight: 400; }
+.cd-val a { color: var(--text-1); text-decoration: none; border-bottom: 1px solid var(--line-2); padding-bottom: 1px; transition: border-color 0.15s; }
+.cd-val a:hover { border-color: var(--text-2); }
+
+.form { display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.fg label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); }
+.fg input, .fg textarea {
+  background: var(--bg-3); border: 1px solid var(--line-2);
+  border-radius: var(--r-sm); color: var(--text-1);
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 300;
+  padding: 10px 14px; outline: none; width: 100%;
+  transition: border-color 0.15s;
+}
+.fg input:focus, .fg textarea:focus { border-color: rgba(255,255,255,0.25); }
+.fg input::placeholder, .fg textarea::placeholder { color: var(--text-3); }
+.fg textarea { min-height: 120px; resize: vertical; }
+.form-submit {
+  background: var(--text-1); color: var(--bg);
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 600;
+  padding: 12px 24px; border-radius: var(--r-sm); border: none; cursor: pointer;
+  transition: opacity 0.15s; letter-spacing: -0.005em; text-align: center;
+}
+.form-submit:hover { opacity: 0.88; }
+
+/* ─── FAQ ─── */
+.faq-wrap { max-width: 680px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item:first-child { border-top: 1px solid var(--line); }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding: 22px 0; background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 0.92rem; font-weight: 500;
+  color: var(--text-1); text-align: left; transition: color 0.15s;
+}
+.faq-q:hover { color: var(--accent); }
+.faq-icon { flex-shrink: 0; color: var(--text-3); font-size: 1rem; line-height: 1; transition: transform 0.25s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); color: var(--text-1); }
+.faq-a {
+  font-size: 0.875rem; color: var(--text-2); font-weight: 300; line-height: 1.75;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.25s ease;
+}
+.faq-item.open .faq-a { max-height: 260px; padding-bottom: 22px; opacity: 1; }
+
+/* ─── CTA STRIP ─── */
+.cta-strip {
+  padding: 96px 40px; text-align: center;
+  border-top: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.cta-strip .h2 { max-width: 560px; margin: 0 auto 1rem; }
+.cta-strip .lead { text-align: center; margin: 0 auto 2.5rem; max-width: 440px; }
+.cta-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 56px 40px 40px;
+  background: var(--bg);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.8fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.footer-brand .nav-logo { margin-bottom: 12px; }
+.footer-brand p { font-size: 0.82rem; color: var(--text-3); font-weight: 300; line-height: 1.6; max-width: 220px; }
+.footer-col h5 {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--text-3); margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 0.83rem; color: var(--text-2); text-decoration: none; font-weight: 300; transition: color 0.15s; }
+.footer-col a:hover { color: var(--text-1); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 0.77rem; color: var(--text-3); font-weight: 300; }
+.socials { display: flex; gap: 8px; }
+.soc {
+  width: 30px; height: 30px; border-radius: var(--r-sm);
+  border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+  color: var(--text-3); font-size: 0.72rem; font-weight: 600;
+  text-decoration: none; transition: all 0.15s;
+}
+.soc:hover { border-color: var(--line-2); color: var(--text-1); }
+
+/* ─── SCROLL REVEAL ─── */
+.sr { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.sr.in { opacity: 1; transform: none; }
+
+/* ─── MOBILE MENU ─── */
+.mob { display: none; position: fixed; inset: 0; z-index: 400; background: var(--bg); flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+.mob.open { display: flex; }
+.mob a { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--text-2); text-decoration: none; transition: color 0.15s; }
+.mob a:hover { color: var(--text-1); }
+.mob-x { position: absolute; top: 20px; right: 40px; background: none; border: none; font-size: 1rem; color: var(--text-3); cursor: pointer; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .ben-layout, .about-layout, .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+  .ben-aside { position: static; }
+  .how-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  #nav { padding: 0 20px; }
+  .nav-center, .nav-right > .nav-link { display: none; }
+  .hamburger { display: flex; }
+  .section { padding: 64px 20px; }
+  #hero { padding: 100px 20px 64px; }
+  .cta-strip { padding: 64px 20px; }
+  footer { padding: 40px 20px 28px; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .services-wrap { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="logo-sq">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="1" width="5" height="5" fill="#0c0c0d"/>
+        <rect x="8" y="1" width="5" height="5" fill="#0c0c0d"/>
+        <rect x="1" y="8" width="5" height="5" fill="#0c0c0d"/>
+        <rect x="8" y="8" width="5" height="5" fill="#0c0c0d" opacity="0.4"/>
+      </svg>
+    </div>
+    TitancoreAI
+  </a>
+
+  <ul class="nav-center">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">Process</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="mailto:Chris@titancoreai.com" class="nav-link">Chris@titancoreai.com</a>
+    <a href="#contact" class="nav-btn">Book a Demo</a>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('mob').classList.add('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob">
+  <button class="mob-x" onclick="document.getElementById('mob').classList.remove('open')">✕ Close</button>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#how" onclick="closeMob()">Process</a>
+  <a href="#benefits" onclick="closeMob()">Benefits</a>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
+  <a href="#contact" onclick="closeMob()" style="color:var(--text-1)">Book a Demo</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-kicker">AI Automation for Business & Healthcare</div>
+  <h1>
+    Your business runs.<br>
+    <em>Even when you don't.</em>
+  </h1>
+  <p class="hero-sub">TitancoreAI builds custom automation systems that respond to leads instantly, book appointments automatically, and handle the operational work that's costing you time and revenue.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-solid">Book a Demo</a>
+    <a href="#services" class="btn-outline">See Our Services</a>
+  </div>
+  <p class="hero-footnote">Based in Louisville, KY &nbsp;·&nbsp; Serving businesses nationwide</p>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section section-alt section-border">
+  <div class="sh sr">
+    <div class="eyebrow">Services</div>
+    <h2 class="h2">What we build</h2>
+    <p class="lead">Every system is designed around your workflow — not adapted from a generic template.</p>
+  </div>
+  <div class="services-wrap sr">
+    <div class="svc">
+      <div class="svc-n">01</div>
+      <h3>AI Missed Call Text-Back</h3>
+      <p>Every unanswered call triggers an immediate, personalized SMS — keeping the caller engaged and in your pipeline before they call the next number on the list.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-n">02</div>
+      <h3>Lead Follow-Up Automation</h3>
+      <p>Structured follow-up sequences across SMS and email, timed and personalized — so no inquiry goes cold and no prospect is forgotten.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-n">03</div>
+      <h3>CRM Workflow Automation</h3>
+      <p>Connect your existing tools into a unified pipeline. Eliminate manual data entry, missed handoffs, and the gaps between platforms.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-n">04</div>
+      <h3>Appointment Booking Systems</h3>
+      <p>Online booking that syncs with your calendar, sends automated reminders, and reduces no-shows — without your team managing it manually.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-n">05</div>
+      <h3>AI Chat & Intake Systems</h3>
+      <p>Intelligent chat that qualifies leads, collects intake information, and routes warm prospects to your team — running around the clock.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-n">06</div>
+      <h3>Customer Response Automation</h3>
+      <p>Consistent, timely communication across every channel — so your customers always feel attended to, even outside business hours.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-n">07</div>
+      <h3>Business Process Automation</h3>
+      <p>End-to-end workflow redesign. We identify where time and revenue are leaking and replace manual processes with reliable automated logic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section">
+  <div class="sh c sr">
+    <div class="eyebrow">The Process</div>
+    <h2 class="h2">How we work</h2>
+    <p class="lead">A clear, repeatable process that gets your systems live fast and keeps improving them over time.</p>
+  </div>
+  <div class="how-grid sr">
+    <div class="how-step">
+      <div class="how-n">01</div>
+      <h3>Analyze</h3>
+      <p>We map your current operations, identify where leads are leaking and time is wasted, and design a custom automation plan built specifically around your business — not a generic template.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-n">02</div>
+      <h3>Automate</h3>
+      <p>We build, integrate, and thoroughly test every system before launch. From response flows to booking pipelines, everything is verified to work correctly from day one.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-n">03</div>
+      <h3>Optimize</h3>
+      <p>We monitor performance post-launch, refine based on real data, and continue evolving your systems as your business grows. The results compound over time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits" class="section section-alt section-border">
+  <div class="ben-layout">
+    <div>
+      <div class="sh sr">
+        <div class="eyebrow">Benefits</div>
+        <h2 class="h2">What changes<br><em>after automation</em></h2>
+        <p class="lead">The gap between businesses that grow and those that plateau is usually operational. This is what we fix.</p>
+      </div>
+      <div class="ben-list sr">
+        <div class="ben-item">
+          <span class="ben-num">1</span>
+          <div>
+            <h4>Reclaim 30–50 hours per month</h4>
+            <p>Manual follow-up, scheduling, and intake tasks are removed from your team's plate — freeing time for work that actually grows the business.</p>
+          </div>
+        </div>
+        <div class="ben-item">
+          <span class="ben-num">2</span>
+          <div>
+            <h4>Respond to every inquiry in under 60 seconds</h4>
+            <p>Speed is the deciding factor in whether a lead converts. Businesses that respond in under a minute win the inquiry. Businesses that don't, often lose it.</p>
+          </div>
+        </div>
+        <div class="ben-item">
+          <span class="ben-num">3</span>
+          <div>
+            <h4>Stop losing leads to slow follow-up</h4>
+            <p>Every missed call, unanswered form, and delayed response is a lead that moved on. Automation ensures every single touchpoint is handled, on time.</p>
+          </div>
+        </div>
+        <div class="ben-item">
+          <span class="ben-num">4</span>
+          <div>
+            <h4>Handle more volume without adding staff</h4>
+            <p>Scale your capacity — more bookings, more patients, more clients — without proportionally increasing overhead or headcount.</p>
+          </div>
+        </div>
+        <div class="ben-item">
+          <span class="ben-num">5</span>
+          <div>
+            <h4>Consistent operations across your entire team</h4>
+            <p>Automated systems don't have off days. Every customer gets the same quality of communication, regardless of who is in the office.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sr">
+      <div class="aside-card">
+        <div class="aside-top">
+          <p>Average lead response time</p>
+          <div class="big">&lt; 60s</div>
+        </div>
+        <div class="aside-row">
+          <span>Missed follow-up reduction</span>
+          <strong>97%</strong>
+        </div>
+        <div class="aside-row">
+          <span>Staff hours saved monthly</span>
+          <strong>30–50 hrs</strong>
+        </div>
+        <div class="aside-row">
+          <span>No-show rate improvement</span>
+          <strong>~50%</strong>
+        </div>
+        <div class="aside-row">
+          <span>System availability</span>
+          <strong>24 / 7 / 365</strong>
+        </div>
+        <div class="aside-row">
+          <span>Works with your existing tools</span>
+          <strong>Yes</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="about-layout">
+    <div class="about-text sr">
+      <div class="eyebrow">About</div>
+      <h2 class="h2">Built to solve<br><em>real problems</em></h2>
+      <p class="lead">Most local businesses and healthcare practices aren't losing revenue because of bad service. They're losing it because of slow, manual, and disconnected operations.</p>
+      <p class="lead">TitancoreAI was built to fix that. We design and deploy custom automation infrastructure — built around your specific workflows, tools, and customers — that works reliably from day one and improves over time.</p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Custom-built, not off-the-shelf</h4>
+            <p>Every system is designed for your business specifically. No forced templates, no generic playbooks.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Works with your existing tools</h4>
+            <p>We integrate with what you already use — your CRM, calendar, phone system, practice management software. No unnecessary migrations.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>Healthcare and compliance-aware</h4>
+            <p>Medical and clinical automations are built with HIPAA considerations and patient communication standards in mind from the start.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-mark"></div>
+          <div>
+            <h4>We stay involved after launch</h4>
+            <p>Ongoing monitoring, optimization, and support. Your automation stack improves over time — it doesn't degrade.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sr">
+      <div class="about-right">
+        <blockquote>"Most businesses don't have an effort problem. They have a <em>systems problem.</em>"</blockquote>
+        <div class="about-divider"></div>
+        <div class="about-attrs">
+          <div class="attr">
+            <span class="attr-k">Company</span>
+            <span class="attr-v">TitancoreAI</span>
+          </div>
+          <div class="attr">
+            <span class="attr-k">Founded</span>
+            <span class="attr-v">Louisville, Kentucky</span>
+          </div>
+          <div class="attr">
+            <span class="attr-k">Service area</span>
+            <span class="attr-v">Nationwide</span>
+          </div>
+          <div class="attr">
+            <span class="attr-k">Focus</span>
+            <span class="attr-v">Local Business & Healthcare</span>
+          </div>
+          <div class="attr">
+            <span class="attr-k">Approach</span>
+            <span class="attr-v">Custom-built systems</span>
+          </div>
+          <div class="attr">
+            <span class="attr-k">Contact</span>
+            <span class="attr-v">Chris@titancoreai.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip sr">
+  <h2 class="h2">Ready to stop losing leads<br><em>to slow response?</em></h2>
+  <p class="lead">Book a free 30-minute strategy call. We'll walk through where your business is losing revenue and what automation can realistically fix.</p>
+  <div class="cta-btns">
+    <a href="#contact" class="btn-solid">Book a Free Call</a>
+    <a href="#services" class="btn-outline">Review Services</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-alt section-border">
+  <div class="contact-layout">
+    <div class="contact-left sr">
+      <div class="eyebrow">Contact</div>
+      <h2 class="h2">Let's talk about<br><em>your operations</em></h2>
+      <p class="lead">Tell us where your business is losing time or revenue. We'll put together a clear, practical automation plan — no cost, no obligation.</p>
+      <div class="contact-details">
+        <div class="cd">
+          <span class="cd-label">Email</span>
+          <span class="cd-val"><a href="mailto:Chris@titancoreai.com">Chris@titancoreai.com</a></span>
+        </div>
+        <div class="cd">
+          <span class="cd-label">Phone</span>
+          <span class="cd-val"><a href="tel:8126047047">(812) 604-7047</a></span>
+        </div>
+        <div class="cd">
+          <span class="cd-label">Location</span>
+          <span class="cd-val">Louisville, KY — serving businesses nationwide</span>
+        </div>
+        <div class="cd">
+          <span class="cd-label">Response time</span>
+          <span class="cd-val">Within one business hour</span>
+        </div>
+      </div>
+    </div>
+    <div class="sr">
+      <form class="form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="fg">
+            <label>Your Name</label>
+            <input type="text" placeholder="Jane Smith" required>
+          </div>
+          <div class="fg">
+            <label>Business Name</label>
+            <input type="text" placeholder="Your Business" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg">
+            <label>Email</label>
+            <input type="email" placeholder="jane@yourbusiness.com" required>
+          </div>
+          <div class="fg">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000">
+          </div>
+        </div>
+        <div class="fg">
+          <label>What's your biggest operational challenge?</label>
+          <textarea placeholder="e.g. We miss too many calls, leads go cold, our intake is still manual..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formBtn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="sh c sr">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="h2">Common questions</h2>
+    <p class="lead">What most businesses ask before getting started.</p>
+  </div>
+  <div class="faq-wrap sr">
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">How long does it take to get up and running?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Core systems — including missed call text-back and lead follow-up — typically go live within 7 to 14 business days. More complex builds involving full CRM integration or custom intake workflows take 3 to 5 weeks depending on scope. We give you a clear timeline before any work begins.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">Do I have to replace my existing software?<span class="faq-icon">+</span></button>
+      <div class="faq-a">In most cases, no. We build integrations that work with the tools you already have — including GoHighLevel, HubSpot, Salesforce, Jane App, Calendly, and Google Workspace, among others. If something isn't serving you well, we'll say so — but we never push unnecessary changes.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">Do you work with healthcare and medical offices?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Yes. Automations for clinical environments are built with HIPAA considerations in mind — using compliant platforms for patient communication, intake, and scheduling. We work closely with your team to make sure every system aligns with your compliance requirements.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">What does it cost?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Pricing depends on what you need. We scope every project individually and provide a clear, detailed proposal before any work begins — no vague retainers, no hidden fees. We also offer ongoing management plans for clients who want a fully hands-off experience.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">Will my team need to learn new software?<span class="faq-icon">+</span></button>
+      <div class="faq-a">We design for minimal disruption. Your team receives documentation and walkthrough training, and most clients interact with their automation through simple dashboards that require no technical knowledge. For teams that prefer to be fully hands-off, we offer ongoing management retainers.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">What happens after the system is built?<span class="faq-icon">+</span></button>
+      <div class="faq-a">We monitor performance, flag issues, and optimize based on real usage data. Automation improves with refinement — we stay involved through a managed retainer or as-needed consultation. You won't be handed off to a support queue after launch.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="faq(this)">What kinds of businesses do you work with?<span class="faq-icon">+</span></button>
+      <div class="faq-a">We primarily work with local businesses and service organizations — medical practices, dental offices, physical therapy clinics, legal firms, home service companies, and others where lead response speed and appointment booking directly affect revenue. If slow follow-up or missed calls are costing you business, we can help.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">
+        <div class="logo-sq">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="1" width="5" height="5" fill="#0c0c0d"/>
+            <rect x="8" y="1" width="5" height="5" fill="#0c0c0d"/>
+            <rect x="1" y="8" width="5" height="5" fill="#0c0c0d"/>
+            <rect x="8" y="8" width="5" height="5" fill="#0c0c0d" opacity="0.4"/>
+          </svg>
+        </div>
+        TitancoreAI
+      </a>
+      <p>Custom AI automation for local businesses and healthcare practices. Built to work. Built to last.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Missed Call Text-Back</a></li>
+        <li><a href="#services">Lead Follow-Up</a></li>
+        <li><a href="#services">CRM Automation</a></li>
+        <li><a href="#services">Appointment Booking</a></li>
+        <li><a href="#services">AI Chat & Intake</a></li>
+        <li><a href="#services">Process Automation</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#how">Process</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="mailto:Chris@titancoreai.com">Chris@titancoreai.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 TitancoreAI. All rights reserved. Louisville, KY.</p>
+    <div class="socials">
+      <a href="#" class="soc" title="LinkedIn">in</a>
+      <a href="#" class="soc" title="X">𝕏</a>
+      <a href="#" class="soc" title="Instagram">ig</a>
+      <a href="#" class="soc" title="YouTube">▶</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('solid', window.scrollY > 20));
+
+// Mobile
+function closeMob() { document.getElementById('mob').classList.remove('open'); }
+
+// FAQ
+function faq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+
+// Form
+function handleForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('formBtn');
+  btn.textContent = 'Message sent — we\'ll be in touch shortly.';
+  btn.style.opacity = '0.6';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
